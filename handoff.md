@@ -13,8 +13,8 @@
 
   - [x] 執行 `colab usage` 完成 Google 帳號授權登入
   - [x] 測試 `python cloud/colab_h3.py check` 確認 Colab 運算單元餘額與 CLI 狀態正常
-  - [x] 修復 `cloud/colab_h3.py` 的 Python 3.9 相容性問題
+  - [x] 查詢 Colab 運算額度：目前為 0.00 CU（僅 T4 權限），G4 尚待方案扣款/生效或儲值
 
 ## 下一步待辦
+- [ ] 確認 Google AI Pro 方案扣款生效（免費用試用期不發放 CU）或加購 Pay-As-You-Go 運算單元以啟用 G4 GPU
 - [ ] 依專案需求建立或測試影片分鏡（例如參考 `pipeline/template_local/` 或最小驗證 `pipeline/demo_local/`）
-- [ ] 若需使用雲端 GPU 生成，確保 Google AI 方案或 Colab 運算單元額度充足
