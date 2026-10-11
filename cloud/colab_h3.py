@@ -320,8 +320,10 @@ def cmd_film(a):
                 z.write(f, f.relative_to(fd).as_posix())
     print(f"[film] 上傳 {rel}（{tmp.stat().st_size / 1e6:.1f} MB）…", flush=True)
     upload(a.name, tmp, "/content/film.zip")
+    stages_joined = ' '.join(a.stages)
+    env_escaped = env.replace("'", "'" + chr(92) + "''")
     vm_sh(a.name, f"mkdir -p /content/repo/{rel} && cd /content/repo/{rel} && python -c \"import zipfile; zipfile.ZipFile('/content/film.zip').extractall('.')\""
-                  f" && nohup sh -c 'env {env.replace("'", "'" + chr(92) + "''")} python make_film.py {' '.join(a.stages)} > /content/film.log 2>&1; echo FILM_EXIT $? >> /content/film.log'"
+                  f" && nohup sh -c 'env {env_escaped} python make_film.py {stages_joined} > /content/film.log 2>&1; echo FILM_EXIT $? >> /content/film.log'"
                   f" > /dev/null 2>&1 &")
     poll(a.name, "/content/film.log", "FILM_EXIT", fail=("FAILED:", "Traceback"), every=60, show=r"^\[stage\]|^→|成片|FILM_EXIT")
     vm_sh(a.name, f"cd /content/repo/{rel} && rm -f /content/film_out.zip && python -c \"import shutil; shutil.make_archive('/content/film_out', 'zip', 'out')\"")
