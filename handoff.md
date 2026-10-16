@@ -1,20 +1,20 @@
 # 交接與進度紀錄 (handoff.md)
 
 ## 目前進度
-- **日期**：2026-10-11
-- **階段**：專案初始化與套件安裝完成
+- **日期**：2026-10-16
+- **階段**：全雲端驗證（Smoke Test）與 7 鏡範例短片製作全數完成，G4 執行個體已安全關閉
 - **完成項目**：
-  - [x] Fork 專案至 `yrchenpu-creator/shanshiba-workflow-colab`
-  - [x] 設定本地 Git remote（origin: 個人 fork, upstream: 原專案）
-  - [x] 成功拉取並切換至 `main` 分支完整代碼庫
-  - [x] 透過 `uv` 安裝 Google Colab 官方 CLI 工具 (`colab`)
-  - [x] 執行硬體偵測 (`setup/detect_hardware.py`)，確認 macOS 採本機劇本/剪接 + 雲端 Colab G4 模式
-  - [x] 建立 `ANTIGRAVITY.md` 專案入口規範與藍圖
-
-  - [x] 執行 `colab usage` 完成 Google 帳號授權登入
-  - [x] 測試 `python cloud/colab_h3.py check` 確認 Colab 運算單元餘額與 CLI 狀態正常
-  - [x] 查詢 Colab 運算額度：目前為 0.00 CU（僅 T4 權限），G4 尚待方案扣款/生效或儲值
+  - [x] Fork 專案至 `yrchenpu-creator/shanshiba-workflow-colab` 並設定 `origin` / `upstream`
+  - [x] 安裝 Google Colab CLI (`colab` v0.7.4) 並完成 Google OAuth 授權
+  - [x] 修復 `cloud/colab_h3.py` 的 Python 3.9 相容性問題
+  - [x] 確認 Colab 運算額度生效（200.00 CU）並解鎖 `G4`（RTX PRO 6000 Blackwell 96GB）權限
+  - [x] 執行 `python3 cloud/colab_h3.py start` 完成全雲端環境部署（耗時 539s）
+  - [x] 執行 `python3 cloud/colab_h3.py smoke` 完成 13 項全鏈路最小安裝驗證（`ALL OK`，結果存於 `setup/smoke_out_colab/`）
+  - [x] 執行 `python3 cloud/colab_h3.py film pipeline/template_local` 完成 7 鏡範例短片〈被狗吃掉的作業〉全流程（角色、母版、首幀、配音、H3、環境音、配樂、片尾、剪接、五遍自審）
+    - 成片：`pipeline/template_local/out/cut/film_1080p.mp4`（37.92 秒）與手機版 `film_720p_phone.mp4`
+    - 自審結果：響度 `-15.7 LUFS`、真峰值 `-1.8 dBFS`、無黑畫面、無定格、無台詞重疊或截斷、7 鏡雜訊全數 `ok`
+  - [x] 執行 `python3 cloud/colab_h3.py stop` 關閉 G4 執行個體（本次總計消耗 `7.4 CU`，剩餘餘額 **`192.6 CU`**）
 
 ## 下一步待辦
-- [ ] 確認 Google AI Pro 方案扣款生效（免費用試用期不發放 CU）或加購 Pay-As-You-Go 運算單元以啟用 G4 GPU
-- [ ] 依專案需求建立或測試影片分鏡（例如參考 `pipeline/template_local/` 或最小驗證 `pipeline/demo_local/`）
+- [ ] 人工觀賞驗收範例成片 `pipeline/template_local/out/cut/film_1080p.mp4`
+- [ ] 開拍新片時：複製 `pipeline/template_local/` 為 `pipeline/<新片名>/`，修改 `film.json` 後以 `python3 cloud/colab_h3.py film pipeline/<新片名>` 執行

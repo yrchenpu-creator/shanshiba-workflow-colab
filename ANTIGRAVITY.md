@@ -3,6 +3,8 @@
 > 這是給 AI agent（AntiGravity / Gemini）讀的專案入口與藍圖。
 > **最新決策寫在最上面**，每條一段：日期、做了什麼、結論、連到詳細文件。被取代的不刪，標「已被取代」。
 
+> **2026-10-16 全雲端驗證（smoke）與 7 鏡範例短片〈被狗吃掉的作業〉成片完成**：Colab 200 運算單元與 G4 權限生效；完成 `start`（完整安裝 539s）、`smoke`（13 項全過，`setup/smoke_out_colab/`）與 `pipeline/template_local` 全流程製作（成片 `pipeline/template_local/out/cut/film_1080p.mp4` 37.92 秒，響度 −15.7 LUFS、峰值 −1.8 dBFS、7 鏡雜訊全 ok），已執行 `stop` 關閉 G4（共耗 7.4 CU，餘額 192.6 CU）。
+
 > **2026-10-11 專案初始化完成**：已 Fork 至 `yrchenpu-creator/shanshiba-workflow-colab`，設定 upstream 為 `mathruffian-dot/shanshiba-workflow-colab`，安裝完成 `google-colab-cli`。硬體偵測判定採「本機劇本/剪接 + 雲端 Colab G4 運算（H3/配音）」架構。
 
 ## 專案簡介
